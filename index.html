@@ -101,9 +101,18 @@
     @media (max-width: 600px){.shell{width:min(100% - 1rem,1120px)}.gallery{grid-template-columns:1fr}.hero{padding-top:3rem}h1{max-width:12ch}}
   </style>
 </head>
+  <audio id="bgMusic" loop>
+  <source src="./assets/crazy-for-you.mp3" type="audio/mpeg" />
+</audio>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
   <div class="heartfield" aria-hidden="true"></div>
+  <button id="musicBtn" aria-label="Jouer la musique" style="
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 50;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--color-primary); color: var(--color-text-inverse);
+  border: none; cursor: pointer; display: grid; place-items: center;
+  box-shadow: var(--shadow-lg); font-size: 20px;">🎵</button>
   <header class="topbar">
     <div class="shell topbar-inner">
       <div class="brand" aria-label="Logo Laura">
@@ -272,6 +281,20 @@
         heartfield.appendChild(heart);
       }
     }
+    const music = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+let playing = false;
+
+musicBtn.addEventListener('click', () => {
+  if (playing) {
+    music.pause();
+    musicBtn.textContent = '🎵';
+  } else {
+    music.play();
+    musicBtn.textContent = '🔇';
+  }
+  playing = !playing;
+});
   </script>
 </body>
 </html>
