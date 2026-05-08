@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laura Anniversaire</title>
+  <meta name="description" content="Un site d'anniversaire romantique pour Laura." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.8rem);
+      --text-3xl: clamp(2.8rem, 1rem + 4vw, 5.2rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+      --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+      --space-12: 3rem; --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+      --color-bg: #f8f4f1; --color-surface: #fffaf7; --color-surface-2: #f2eae5;
+      --color-border: rgba(56,31,42,.14); --color-text: #2d1d24; --color-text-muted:#715864;
+      --color-text-faint:#a38d97; --color-text-inverse:#fffaf7; --color-primary:#8e395d;
+      --color-primary-hover:#6f2948; --color-primary-soft:#ead6df; --shadow-lg:0 20px 60px rgba(49,22,32,.16);
+      --radius-sm:.5rem; --radius-md:.9rem; --radius-lg:1.25rem; --radius-xl:1.8rem; --radius-full:9999px;
+      --font-display:'Cormorant Garamond', serif; --font-body:'Manrope', sans-serif;
+    }
+    [data-theme="dark"] {
+      --color-bg: #140f13; --color-surface: #1b1418; --color-surface-2: #241b20;
+      --color-border: rgba(255,235,242,.10); --color-text: #f4e8ec; --color-text-muted:#c8afb9;
+      --color-text-faint:#8f7781; --color-text-inverse:#140f13; --color-primary:#d282a5;
+      --color-primary-hover:#e29fbc; --color-primary-soft:#35232c; --shadow-lg:0 24px 80px rgba(0,0,0,.38);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth} body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);line-height:1.7;background:
+      radial-gradient(circle at top right, rgba(210,130,165,.18), transparent 30%),
+      radial-gradient(circle at left 20%, rgba(255,221,182,.08), transparent 25%),
+      var(--color-bg); color:var(--color-text)}
+    img,svg{display:block;max-width:100%;height:auto} a{text-decoration:none;color:inherit}
+    button{font:inherit;border:none;background:none;color:inherit;cursor:pointer}
+    .skip-link{position:absolute;left:-9999px;top:auto}.skip-link:focus{left:1rem;top:1rem;background:var(--color-surface);padding:.75rem 1rem;border-radius:var(--radius-full);z-index:1000}
+    .shell{width:min(1120px,calc(100% - 2rem));margin:0 auto}
+    .topbar{position:sticky;top:0;z-index:20;backdrop-filter:blur(18px);background:rgba(20,15,19,.62);border-bottom:1px solid var(--color-border)}
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;padding:var(--space-4) 0;gap:var(--space-4)}
+    .brand{display:flex;align-items:center;gap:var(--space-3)}
+    .brand-mark{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--color-primary),transparent 160%);box-shadow:var(--shadow-lg)}
+    .brand-mark svg{width:24px;height:24px}
+    .brand-text{display:flex;flex-direction:column}
+    .brand-text strong{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;line-height:1}
+    .brand-text span{font-size:var(--text-xs);color:var(--color-text-muted);letter-spacing:.12em;text-transform:uppercase}
+    .nav{display:flex;gap:var(--space-4);align-items:center}.nav a{font-size:var(--text-sm);color:var(--color-text-muted)}
+    .nav a:hover,.nav a:focus-visible{color:var(--color-text)}
+    .theme-toggle{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--color-surface);border:1px solid var(--color-border)}
+    .hero{padding:clamp(4rem,8vw,8rem) 0 var(--space-16)}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--space-10);align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .9rem;border-radius:var(--radius-full);background:var(--color-primary-soft);color:var(--color-primary);font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase}
+    h1,h2,h3{font-family:var(--font-display);line-height:1.05;font-weight:600}
+    h1{font-size:var(--text-3xl);max-width:10ch;margin:var(--space-5) 0}
+    .lede{max-width:58ch;color:var(--color-text-muted);font-size:var(--text-lg)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-8)}
+    .btn{min-height:48px;padding:.95rem 1.35rem;border-radius:var(--radius-full);display:inline-flex;align-items:center;gap:.7rem;font-size:var(--text-sm);font-weight:700}
+    .btn-primary{background:var(--color-primary);color:var(--color-text-inverse)} .btn-primary:hover{background:var(--color-primary-hover)}
+    .btn-secondary{border:1px solid var(--color-border);background:var(--color-surface)}
+    .hero-card{position:relative;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-4);box-shadow:var(--shadow-lg)}
+    .hero-card img{border-radius:calc(var(--radius-xl) - var(--space-4));aspect-ratio:4/5;object-fit:cover;width:100%}
+    .floating-note{position:absolute;right:-1rem;bottom:1rem;width:min(280px,75%);background:rgba(27,20,24,.88);border:1px solid rgba(255,255,255,.08);padding:var(--space-4);border-radius:var(--radius-lg);backdrop-filter:blur(10px)}
+    .floating-note p{font-size:var(--text-sm);color:#f6e7ed}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-top:var(--space-8)}
+    .stat{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-5)}
+    .stat strong{display:block;font-family:var(--font-display);font-size:var(--text-xl)} .stat span{color:var(--color-text-muted);font-size:var(--text-sm)}
+    section{padding:clamp(3.5rem,7vw,6rem) 0}.section-head{display:grid;gap:var(--space-3);margin-bottom:var(--space-8);max-width:60ch}
+    .section-head h2{font-size:var(--text-2xl)} .section-head p{color:var(--color-text-muted)}
+    .letter{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--space-8);align-items:start}
+    .letter-card,.music-card,.timeline-card,.gallery-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg)}
+    .letter-card{padding:clamp(1.4rem,3vw,2.4rem)} .letter-copy{display:grid;gap:var(--space-5)}
+    .letter-copy p{color:var(--color-text-muted)} .highlight{color:var(--color-text);font-weight:600}
+    .side-stack{display:grid;gap:var(--space-4)} .mini-photo{overflow:hidden;border-radius:var(--radius-lg);border:1px solid var(--color-border);background:var(--color-surface-2)}
+    .mini-photo img{aspect-ratio:4/3;object-fit:cover;width:100%}
+    .timeline{display:grid;gap:var(--space-4)} .timeline-card{padding:var(--space-5)}
+    .timeline-card small{display:block;font-size:var(--text-xs);color:var(--color-primary);text-transform:uppercase;letter-spacing:.12em;margin-bottom:var(--space-2)}
+    .timeline-card h3{font-size:var(--text-xl);margin-bottom:var(--space-2)} .timeline-card p{color:var(--color-text-muted)}
+    .gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--space-4)} .gallery-card{overflow:hidden}
+    .gallery-card img{width:100%;height:100%;object-fit:cover}
+    .span-5{grid-column:span 5}.span-7{grid-column:span 7}.span-4{grid-column:span 4}.span-8{grid-column:span 8}.span-6{grid-column:span 6}
+    .gallery-card.tall img{aspect-ratio:4/5}.gallery-card.wide img{aspect-ratio:16/10}.gallery-card.square img{aspect-ratio:1/1}
+    .music-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--space-8);align-items:center}
+    .music-card{padding:var(--space-6)} .music-card p{color:var(--color-text-muted)}
+    .vinyl{width:min(320px,100%);aspect-ratio:1;border-radius:50%;margin:auto;background:radial-gradient(circle at center, #1e1519 0 12%, #4c2b38 12% 16%, #111 16% 100%);position:relative;box-shadow:var(--shadow-lg);animation:spin 14s linear infinite}
+    .vinyl::before{content:"";position:absolute;inset:22%;border-radius:50%;background:radial-gradient(circle,var(--color-primary-soft),var(--color-primary));border:8px solid #1a1115}
+    .vinyl::after{content:"";position:absolute;inset:48%;border-radius:50%;background:#f9edf1}
+    .footer{padding:0 0 var(--space-12)} .footer-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-8);text-align:center}
+    .footer-card h2{font-size:var(--text-2xl);margin-bottom:var(--space-3)} .footer-card p{max-width:50ch;margin:0 auto;color:var(--color-text-muted)}
+    .heartfield{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}.heart{position:absolute;bottom:-40px;font-size:18px;opacity:.18;animation:floatUp linear forwards}
+    main,header,footer{position:relative;z-index:1}
+    @keyframes floatUp{to{transform:translateY(-115vh) rotate(20deg);opacity:0}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.vinyl,.heart{animation:none!important}}
+    @media (max-width: 900px){.hero-grid,.letter,.music-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.floating-note{position:relative;right:auto;bottom:auto;width:100%;margin-top:var(--space-4)}.nav{display:none}.gallery{grid-template-columns:1fr 1fr}.span-4,.span-5,.span-6,.span-7,.span-8{grid-column:span 1}}
+    @media (max-width: 600px){.shell{width:min(100% - 1rem,1120px)}.gallery{grid-template-columns:1fr}.hero{padding-top:3rem}h1{max-width:12ch}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <div class="heartfield" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand" aria-label="Logo Laura">
+        <div class="brand-mark">
+          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <path d="M24 39c-7.5-5.1-14-10.6-14-18.1C10 15.2 14 11 19.1 11c2.6 0 4.9 1.1 6.4 3.1 1.5-2 3.8-3.1 6.4-3.1C37 11 41 15.2 41 20.9 41 28.4 31.5 33.9 24 39Z" stroke="currentColor" stroke-width="2.4" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <strong>Laura</strong>
+          <span>08 mai 2027</span>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#lettre">Lettre</a>
+        <a href="#souvenirs">Souvenirs</a>
+        <a href="#photos">Photos</a>
+        <a href="#musique">Musique</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Changer le thème">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <span class="eyebrow">Pour tes 27 ans</span>
+          <h1>Joyeux anniversaire mon amour.</h1>
+          <p class="lede">Entre Bora Bora et Madrid, il y a des kilomètres, des fuseaux horaires, des silences parfois, mais il y a surtout nous. Et après toutes ces années, je continue de te choisir avec la même évidence.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#lettre">Lire ma lettre</a>
+            <a class="btn btn-secondary" href="#photos">Voir nos photos</a>
+          </div>
+          <div class="stats" aria-label="Repères de notre histoire">
+            <div class="stat"><strong id="yearsTogether">10</strong><span>ans d'histoire presque écrits ensemble</span></div>
+            <div class="stat"><strong id="countdownDays">0</strong><span>jours avant le 8 mai 2027</span></div>
+            <div class="stat"><strong>Madrid ↔ Bora Bora</strong><span>la distance n'efface rien de ce qu'on est</span></div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <img src="./assets/photo2.jpeg" alt="Laura et son amoureux qui s'embrassent à Paris" width="1080" height="810" />
+          <div class="floating-note">
+            <p>Chaque photo me rappelle qu'il y a des amours qui ne vieillissent pas, ils apprennent seulement à devenir plus forts, plus patients, plus vrais.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lettre">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Ma lettre pour toi</h2>
+          <p>Je voulais un endroit où tout poser calmement, sans être coupé par le temps, la distance ou les peurs. Alors j'ai écrit ici ce que je ressens pour toi.</p>
+        </div>
+        <div class="letter">
+          <article class="letter-card letter-copy">
+            <p>Laura, aujourd'hui tu fêtes tes 27 ans, et moi je pense à tout ce que le temps a déjà mis sur notre route. Je pense à ce qu'on a été, à ce qu'on est devenus, à toutes les versions de nous qui se sont suivies sans jamais vraiment se perdre. Plus les années passent, plus je comprends que l'amour n'est pas seulement fait des jours faciles, des photos réussies ou des moments parfaits. Il est aussi fait des attentes, des manques, des doutes, des nuits où l'on aimerait juste être l'un contre l'autre au lieu de regarder un écran.</p>
+            <p>Il y a cette distance entre toi et moi, <span class="highlight">Bora Bora d'un côté, Madrid de l'autre</span>, et parfois elle pèse lourd. Elle agrandit les silences, elle laisse de la place aux questions, elle fait naître des peurs qu'on n'aurait peut-être jamais ressenties en étant près l'un de l'autre. Parfois on doute, parfois on fatigue, parfois on ne sait plus très bien comment porter tout ce qu'on ressent sans s'abîmer un peu. Mais même dans ces moments-là, même quand le temps semble lent et que l'attente fait mal, il y a quelque chose que je n'arrive jamais à oublier: c'est toi.</p>
+            <p>Je n'oublie pas ta voix, ton regard, ta manière d'être là, même de loin. Je n'oublie pas la paix que je ressens quand tout va bien entre nous, ni le vide que je sens quand tu me manques trop. Je n'oublie pas qu'après tout ce qu'on a traversé, mon coeur revient encore vers toi avec la même sincérité. Ce n'est pas un amour parfait, parce qu'aucun amour réel ne l'est. C'est un amour vivant, qui a connu le temps, qui a connu l'absence, qui a connu les remises en question, et qui pourtant existe encore avec une force que je respecte profondément.</p>
+            <p>Alors aujourd'hui, pour ton anniversaire, je ne veux pas te promettre quelque chose de trop simple ou de trop beau pour être vrai. Je veux juste te dire que je t'aime dans ce que notre histoire a de lumineux, mais aussi dans ce qu'elle a de fragile. Je t'aime dans les certitudes, et je t'aime aussi dans les moments où il faut se rassurer. Je t'aime dans le temps qui passe, parce qu'au lieu d'effacer ce que je ressens, il lui a donné du poids, de la mémoire et de la vérité.</p>
+            <p>Tu prends 27 ans aujourd'hui, et moi je regarde cette femme que tu es devenue avec admiration. Peu importe les kilomètres, peu importe les décalages, peu importe les jours compliqués, tu restes une personne immense dans mon coeur. Et si parfois le monde nous met à l'épreuve, j'espère qu'on n'oubliera jamais que certaines histoires méritent qu'on les tienne fort. La nôtre en fait partie.</p>
+            <p>Joyeux anniversaire mon amour. Merci pour tout ce que tu as été pour moi, pour tout ce que tu es encore, et pour tout ce que le temps n'a pas réussi à enlever. Où que tu sois, à l'autre bout du monde ou tout près, il y aura toujours une place en moi qui portera ton prénom avec douceur.</p>
+          </article>
+          <aside class="side-stack">
+            <div class="mini-photo"><img src="./assets/photo1.jpeg" alt="Selfie amoureux dans l'eau" width="867" height="1122" loading="lazy" /></div>
+            <div class="mini-photo"><img src="./assets/photo8.jpeg" alt="Portrait noir et blanc du couple" width="683" height="917" loading="lazy" /></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="souvenirs">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Nos repères</h2>
+          <p>Je n'ai pas toutes les dates exactes, alors j'ai construit cette partie comme un fil émotionnel: ce qu'on a vécu, ce qu'on traverse, et ce qu'on protège encore.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-card"><small>Chapitre un</small><h3>Le début de nous</h3><p>Il y a presque dix ans, quelque chose a commencé entre nous, quelque chose qui a grandi malgré les changements, malgré les années et malgré les chemins parfois compliqués.</p></article>
+          <article class="timeline-card"><small>Chapitre deux</small><h3>Les moments où tout semblait simple</h3><p>Les voyages, les soirées, les baisers volés, les photos prises sans réfléchir, tout ce qui nous a donné la sensation d'être exactement là où on devait être.</p></article>
+          <article class="timeline-card"><small>Chapitre trois</small><h3>La distance et les doutes</h3><p>On apprend que l'amour n'est pas juste la présence. C'est aussi le choix de rester sincères quand l'absence fatigue, quand le temps ralentit et quand les peurs demandent à être traversées.</p></article>
+          <article class="timeline-card"><small>Chapitre quatre</small><h3>Ce qui tient encore</h3><p>Au milieu de tout, il y a cette vérité simple: malgré ce qui nous secoue, tu comptes toujours pour moi d'une manière rare, profonde et impossible à remplacer.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="photos">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Quelques images de nous</h2>
+          <p>Des instants légers, beaux, drôles ou tendres. Tout ce qui rappelle qu'une histoire se raconte aussi avec des regards, des gestes et des souvenirs figés.</p>
+        </div>
+        <div class="gallery">
+          <figure class="gallery-card span-5 tall"><img src="./assets/photo5.jpeg" alt="Laura en robe bordeaux avec son amoureux derrière elle" width="810" height="1080" loading="lazy" /></figure>
+          <figure class="gallery-card span-7 wide"><img src="./assets/photo7.jpeg" alt="Couple qui s'embrasse dans un restaurant" width="768" height="1024" loading="lazy" /></figure>
+          <figure class="gallery-card span-4 square"><img src="./assets/photo3.jpeg" alt="Photo tendre du couple allongé ensemble" width="640" height="1136" loading="lazy" /></figure>
+          <figure class="gallery-card span-4 tall"><img src="./assets/photo4.jpeg" alt="Couple déguisé lors d'une fête" width="720" height="960" loading="lazy" /></figure>
+          <figure class="gallery-card span-4 square"><img src="./assets/photo6.jpeg" alt="Selfie miroir du couple dans la rue" width="810" height="1080" loading="lazy" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="musique">
+      <div class="shell music-grid">
+        <div class="music-card">
+          <div class="section-head" style="margin-bottom:1.25rem;">
+            <h2>Une chanson pour toi</h2>
+            <p>J'ai laissé ici une place pour Madonna, parce que sa musique sait être à la fois élégante, fragile et intense. Pour éviter les soucis de droits, j'ai intégré un lien que tu pourras remplacer par la chanson exacte que tu veux offrir.</p>
+          </div>
+          <p style="margin-bottom:1.25rem;">Suggestion romantique: <strong style="font-weight:700;color:var(--color-text)">La Isla Bonita</strong> ou <strong style="font-weight:700;color:var(--color-text)">Crazy For You</strong>. Choisis celle qui vous ressemble le plus, puis remplace simplement le lien ci-dessous par ton lien YouTube ou Spotify préféré.</p>
+          <a class="btn btn-primary" href="https://www.youtube.com/results?search_query=Madonna+Crazy+For+You" target="_blank" rel="noopener noreferrer">Ouvrir la musique</a>
+        </div>
+        <div class="music-card" aria-hidden="true">
+          <div class="vinyl"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer-card">
+        <h2>À toi, aujourd'hui</h2>
+        <p>Peu importe l'heure chez toi, peu importe l'océan entre nous, ce site est juste une manière de te dire que je pense à toi, que je te vois, et que notre histoire compte encore énormément pour moi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.querySelector('[data-theme-toggle]');
+    const root = document.documentElement;
+    let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    root.setAttribute('data-theme', theme);
+    function updateIcon(){
+      themeToggle.innerHTML = theme === 'dark'
+        ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+        : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    }
+    updateIcon();
+    themeToggle.addEventListener('click', () => {
+      theme = theme === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', theme);
+      updateIcon();
+    });
+
+    const target = new Date('2027-05-08T00:00:00');
+    const today = new Date();
+    const diffDays = Math.max(0, Math.ceil((target - today) / (1000 * 60 * 60 * 24)));
+    document.getElementById('countdownDays').textContent = diffDays;
+    document.getElementById('yearsTogether').textContent = '10';
+
+    const heartfield = document.querySelector('.heartfield');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const symbols = ['❤','♡'];
+      for (let i = 0; i < 18; i++) {
+        const heart = document.createElement('span');
+        heart.className = 'heart';
+        heart.textContent = symbols[i % symbols.length];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (12 + Math.random() * 12) + 's';
+        heart.style.animationDelay = (Math.random() * 10) + 's';
+        heart.style.fontSize = (12 + Math.random() * 18) + 'px';
+        heartfield.appendChild(heart);
+      }
+    }
+  </script>
+</body>
+</html>
