@@ -94,6 +94,29 @@
     .footer-card h2{font-size:var(--text-2xl);margin-bottom:var(--space-3)} .footer-card p{max-width:50ch;margin:0 auto;color:var(--color-text-muted)}
     .heartfield{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}.heart{position:absolute;bottom:-40px;font-size:18px;opacity:.18;animation:floatUp linear forwards}
     main,header,footer{position:relative;z-index:1}
+
+    /* ── Bouton musique flottant ── */
+    #musicBtn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 50;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      border: none;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow-lg);
+      font-size: 20px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    #musicBtn:hover { background: var(--color-primary-hover); transform: scale(1.08); }
+    #musicBtn:active { transform: scale(0.96); }
+
     @keyframes floatUp{to{transform:translateY(-115vh) rotate(20deg);opacity:0}}
     @keyframes spin{to{transform:rotate(360deg)}}
     @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.vinyl,.heart{animation:none!important}}
@@ -101,18 +124,18 @@
     @media (max-width: 600px){.shell{width:min(100% - 1rem,1120px)}.gallery{grid-template-columns:1fr}.hero{padding-top:3rem}h1{max-width:12ch}}
   </style>
 </head>
-  <audio id="bgMusic" loop>
-  <source src="./assets/crazy-for-you.mp3" type="audio/mpeg" />
-</audio>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <!-- Bouton musique flottant -->
+  <button id="musicBtn" aria-label="Jouer la musique" title="Jouer / Couper la musique">🎵</button>
+
+  <!-- Balise audio — pointe vers ton fichier MP3 dans assets/ -->
+  <audio id="bgMusic" loop>
+    <source src="./assets/crazy-for-you.mp3" type="audio/mpeg" />
+  </audio>
+
   <div class="heartfield" aria-hidden="true"></div>
-  <button id="musicBtn" aria-label="Jouer la musique" style="
-  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 50;
-  width: 52px; height: 52px; border-radius: 50%;
-  background: var(--color-primary); color: var(--color-text-inverse);
-  border: none; cursor: pointer; display: grid; place-items: center;
-  box-shadow: var(--shadow-lg); font-size: 20px;">🎵</button>
   <header class="topbar">
     <div class="shell topbar-inner">
       <div class="brand" aria-label="Logo Laura">
@@ -245,6 +268,7 @@
   </footer>
 
   <script>
+    // ── Thème ──
     const themeToggle = document.querySelector('[data-theme-toggle]');
     const root = document.documentElement;
     let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -261,12 +285,14 @@
       updateIcon();
     });
 
+    // ── Compte à rebours ──
     const target = new Date('2027-05-08T00:00:00');
     const today = new Date();
     const diffDays = Math.max(0, Math.ceil((target - today) / (1000 * 60 * 60 * 24)));
     document.getElementById('countdownDays').textContent = diffDays;
     document.getElementById('yearsTogether').textContent = '10';
 
+    // ── Cœurs flottants ──
     const heartfield = document.querySelector('.heartfield');
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       const symbols = ['❤','♡'];
@@ -281,20 +307,26 @@
         heartfield.appendChild(heart);
       }
     }
-    const music = document.getElementById('bgMusic');
-const musicBtn = document.getElementById('musicBtn');
-let playing = false;
 
-musicBtn.addEventListener('click', () => {
-  if (playing) {
-    music.pause();
-    musicBtn.textContent = '🎵';
-  } else {
-    music.play();
-    musicBtn.textContent = '🔇';
-  }
-  playing = !playing;
-});
+    // ── Musique de fond ──
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    let playing = false;
+
+    musicBtn.addEventListener('click', () => {
+      if (playing) {
+        music.pause();
+        musicBtn.textContent = '🎵';
+        musicBtn.setAttribute('aria-label', 'Jouer la musique');
+      } else {
+        music.play().catch(() => {
+          // Autoplay bloqué — on reste en état "pausé"
+        });
+        musicBtn.textContent = '🔇';
+        musicBtn.setAttribute('aria-label', 'Couper la musique');
+      }
+      playing = !playing;
+    });
   </script>
 </body>
 </html>
